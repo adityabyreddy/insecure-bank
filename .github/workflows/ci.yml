@@ -1,20 +1,28 @@
-name: ci
-on: [push, pull_request]
-jobs:
-  run:
-    name: Java ${{ matrix.java }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ 8 ]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.java }}
-        java-package: jdk
-        architecture: x64
-    - name: Run tests
-      run: mvn -B package
+name: "Upload SARIF"
 
+# Run workflow each time code is pushed to your repository and on a schedule.
+# The scheduled workflow runs every Thursday at 15:45 UTC.
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+    steps:
+      # This step checks out a copy of your repository.
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: Security-Advisor-Report.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: my-analysis-tool
