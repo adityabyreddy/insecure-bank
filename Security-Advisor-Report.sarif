@@ -1,0 +1,3909 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Semgrep",
+          "informationUri": "https://semgrep.dev",
+          "version": "latest",
+          "rules": [
+            {
+              "id": "dockerfile.security.missing-user.missing-user",
+              "name": "dockerfile.security.missing-user.missing-user",
+              "shortDescription": {
+                "text": "By not specifying a USER, a program in the container may run as 'root'. This is a security hazard. If an attacker can control a process running as root, they may have control over the container. Ensur"
+              },
+              "helpUri": "https://owasp.org/Top10/A04_2021-Insecure_Design",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.spring.security.audit.spring-csrf-disabled.spring-csrf-disabled",
+              "name": "java.spring.security.audit.spring-csrf-disabled.spring-csrf-disabled",
+              "shortDescription": {
+                "text": "CSRF protection is disabled for this configuration. This is a security risk."
+              },
+              "helpUri": "https://owasp.org/Top10/A01_2021-Broken_Access_Control",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+              "name": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+              "shortDescription": {
+                "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed "
+              },
+              "helpUri": "https://find-sec-bugs.github.io/bugs.htm#SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.spring.security.injection.tainted-file-path.tainted-file-path",
+              "name": "java.spring.security.injection.tainted-file-path.tainted-file-path",
+              "shortDescription": {
+                "text": "Detected user input controlling a file path. An attacker could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled v"
+              },
+              "helpUri": "https://owasp.org/www-community/attacks/Path_Traversal",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.spring.security.injection.tainted-url-host.tainted-url-host",
+              "name": "java.spring.security.injection.tainted-url-host.tainted-url-host",
+              "shortDescription": {
+                "text": "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorizat"
+              },
+              "helpUri": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+              "name": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+              "shortDescription": {
+                "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+              },
+              "helpUri": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.lang.security.audit.object-deserialization.object-deserialization",
+              "name": "java.lang.security.audit.object-deserialization.object-deserialization",
+              "shortDescription": {
+                "text": "Found object deserialization using ObjectInputStream. Deserializing entire Java objects is dangerous because malicious actors can create Java object streams with unintended consequences. Ensure that t"
+              },
+              "helpUri": "https://www.owasp.org/index.php/Deserialization_of_untrusted_data",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "name": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "shortDescription": {
+                "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information"
+              },
+              "helpUri": "https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "shortDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calli"
+              },
+              "helpUri": "https://owasp.org/Top10/A05_2021-Security_Misconfiguration",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+              "name": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+              "shortDescription": {
+                "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by ca"
+              },
+              "helpUri": "https://owasp.org/Top10/A05_2021-Security_Misconfiguration",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "java.spring.security.audit.spring-sqli.spring-sqli",
+              "name": "java.spring.security.audit.spring-sqli.spring-sqli",
+              "shortDescription": {
+                "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statement"
+              },
+              "helpUri": "https://owasp.org/Top10/A03_2021-Injection",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+              "name": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+              "shortDescription": {
+                "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attr"
+              },
+              "helpUri": "https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+              "name": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+              "shortDescription": {
+                "text": "RegExp() called with a `$` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this re"
+              },
+              "helpUri": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization",
+              "name": "javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization",
+              "shortDescription": {
+                "text": "`oConfig.sFileName.replace` method will only replace the first occurrence when used with a string argument ('*'). If this method is used for escaping of dangerous data then there is a possibility for "
+              },
+              "helpUri": "https://owasp.org/Top10/A03_2021-Injection",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "javascript.audit.detect-replaceall-sanitization.detect-replaceall-sanitization",
+              "name": "javascript.audit.detect-replaceall-sanitization.detect-replaceall-sanitization",
+              "shortDescription": {
+                "text": "Detected a call to `replace()` in an attempt to HTML escape the string `previousSearch.sSearch`. Manually sanitizing input through a manually built list can be circumvented in many situations, and it'"
+              },
+              "helpUri": "https://www.npmjs.com/package/dompurify",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            },
+            {
+              "id": "javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring",
+              "name": "javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring",
+              "shortDescription": {
+                "text": "Detected string concatenation with a non-literal variable in a util.format / console.log function. If an attacker injects a format specifier in the string, it will forge the log message. Try to use co"
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/134.html",
+              "properties": {
+                "tags": [
+                  "SAST",
+                  "semgrep"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "dockerfile.security.missing-user.missing-user",
+          "level": "warning",
+          "message": {
+            "text": "By not specifying a USER, a program in the container may run as 'root'. This is a security hazard. If an attacker can control a process running as root, they may have control over the container. Ensure that the last USER in a Dockerfile is a USER other than 'root'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 1,
+                  "endLine": 37,
+                  "endColumn": 45
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-csrf-disabled.spring-csrf-disabled",
+          "level": "warning",
+          "message": {
+            "text": "CSRF protection is disabled for this configuration. This is a security risk."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/config/SecurityConfig.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 6,
+                  "endLine": 41,
+                  "endColumn": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/ActivityController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 3,
+                  "endLine": 47,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/ActivityController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 3,
+                  "endLine": 66,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/ActivityController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 3,
+                  "endLine": 85,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/AdminController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 3,
+                  "endLine": 20,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/AuthenticationController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 3,
+                  "endLine": 10,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/AuthenticationController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 3,
+                  "endLine": 15,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/AuthenticationController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 3,
+                  "endLine": 20,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 3,
+                  "endLine": 70,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.injection.tainted-file-path.tainted-file-path",
+          "level": "warning",
+          "message": {
+            "text": "Detected user input controlling a file path. An attacker could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 102,
+                  "startColumn": 18,
+                  "endLine": 102,
+                  "endColumn": 43
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.injection.tainted-url-host.tainted-url-host",
+          "level": "warning",
+          "message": {
+            "text": "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 117,
+                  "startColumn": 11,
+                  "endLine": 117,
+                  "endColumn": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+          "level": "warning",
+          "message": {
+            "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 55,
+                  "endLine": 173,
+                  "endColumn": 60
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.object-deserialization.object-deserialization",
+          "level": "warning",
+          "message": {
+            "text": "Found object deserialization using ObjectInputStream. Deserializing entire Java objects is dangerous because malicious actors can create Java object streams with unintended consequences. Ensure that the objects being deserialized are not user-controlled. If this must be done, consider using HMACs to sign the data stream to make sure it is not tampered with, or consider only transmitting object fields and populating a new object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 181,
+                  "startColumn": 4,
+                  "endLine": 181,
+                  "endColumn": 73
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+          "level": "warning",
+          "message": {
+            "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 210,
+                  "startColumn": 56,
+                  "endLine": 210,
+                  "endColumn": 61
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+          "level": "warning",
+          "message": {
+            "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 230,
+                  "startColumn": 38,
+                  "endLine": 230,
+                  "endColumn": 43
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+          "level": "warning",
+          "message": {
+            "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/DashboardController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 240,
+                  "startColumn": 65,
+                  "endLine": 240,
+                  "endColumn": 70
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/HelpController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 3,
+                  "endLine": 11,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+          "level": "warning",
+          "message": {
+            "text": "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/TransferController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 3,
+                  "endLine": 49,
+                  "endColumn": 17
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+          "level": "warning",
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/TransferController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 64,
+                  "startColumn": 3,
+                  "endLine": 64,
+                  "endColumn": 71
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+          "level": "warning",
+          "message": {
+            "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling 'new Cookie(\"accountType\", AccountType.PERSONAL).setSecure(true);'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/controllers/TransferController.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 64,
+                  "startColumn": 3,
+                  "endLine": 64,
+                  "endColumn": 71
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-sqli.spring-sqli",
+          "level": "warning",
+          "message": {
+            "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/dao/AccountDaoImpl.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 29,
+                  "endLine": 72,
+                  "endColumn": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-sqli.spring-sqli",
+          "level": "warning",
+          "message": {
+            "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/dao/AccountDaoImpl.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 91,
+                  "startColumn": 29,
+                  "endLine": 91,
+                  "endColumn": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-sqli.spring-sqli",
+          "level": "warning",
+          "message": {
+            "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/dao/ActivityDaoImpl.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 52,
+                  "endLine": 22,
+                  "endColumn": 55
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-sqli.spring-sqli",
+          "level": "warning",
+          "message": {
+            "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/dao/CashAccountImpl.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 29,
+                  "endLine": 36,
+                  "endColumn": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.spring.security.audit.spring-sqli.spring-sqli",
+          "level": "warning",
+          "message": {
+            "text": "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/java/org/hdivsamples/dao/CreditAccountImpl.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 29,
+                  "endLine": 35,
+                  "endColumn": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery-ui/jquery-ui-1.10.4.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 620,
+                  "startColumn": 6,
+                  "endLine": 620,
+                  "endColumn": 41
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `$` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery-ui/jquery-ui-1.10.4.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 6397,
+                  "startColumn": 17,
+                  "endLine": 6397,
+                  "endColumn": 71
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `term` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery-ui/jquery-ui-1.10.4.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 6397,
+                  "startColumn": 17,
+                  "endLine": 6397,
+                  "endColumn": 71
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `event` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery-ui/jquery-ui-1.10.4.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 9866,
+                  "startColumn": 12,
+                  "endLine": 9866,
+                  "endColumn": 56
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `event` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery-ui/jquery-ui-1.10.4.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 9878,
+                  "startColumn": 13,
+                  "endLine": 9878,
+                  "endColumn": 57
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `className` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1610,
+                  "startColumn": 16,
+                  "endLine": 1610,
+                  "endColumn": 93
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1665,
+                  "startColumn": 17,
+                  "endLine": 1665,
+                  "endColumn": 37
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2066,
+                  "startColumn": 12,
+                  "endLine": 2066,
+                  "endColumn": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2080,
+                  "startColumn": 13,
+                  "endLine": 2080,
+                  "endColumn": 33
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2088,
+                  "startColumn": 13,
+                  "endLine": 2088,
+                  "endColumn": 33
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2802,
+                  "startColumn": 11,
+                  "endLine": 2802,
+                  "endColumn": 31
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/jquery/jquery-2.1.0.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2907,
+                  "startColumn": 10,
+                  "endLine": 2907,
+                  "endColumn": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `$` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/bootstrap-editable/bootstrap-editable.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 3284,
+                  "startColumn": 22,
+                  "endLine": 3284,
+                  "endColumn": 78
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `v` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/bootstrap-editable/bootstrap-editable.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 4026,
+                  "startColumn": 25,
+                  "endLine": 4026,
+                  "endColumn": 42
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `prefix` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/bootstrap-editable/bootstrap-editable.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 5852,
+                  "startColumn": 14,
+                  "endLine": 5852,
+                  "endColumn": 64
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `prefix` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/bootstrap-editable/bootstrap-editable.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 5853,
+                  "startColumn": 13,
+                  "endLine": 5853,
+                  "endColumn": 51
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `name` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/exts/dataTables.tableTools.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 63,
+                  "startColumn": 46,
+                  "endLine": 63,
+                  "endColumn": 80
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `name` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/exts/dataTables.tableTools.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 36,
+                  "endLine": 66,
+                  "endColumn": 70
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization",
+          "level": "warning",
+          "message": {
+            "text": "`oConfig.sFileName.replace` method will only replace the first occurrence when used with a string argument ('*'). If this method is used for escaping of dangerous data then there is a possibility for a bypass. Try to use sanitization library instead or use a Regex with a global flag."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/exts/dataTables.tableTools.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1836,
+                  "startColumn": 23,
+                  "endLine": 1836,
+                  "endColumn": 79
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization",
+          "level": "warning",
+          "message": {
+            "text": "`oConfig.sFileName.replace` method will only replace the first occurrence when used with a string argument ('*'). If this method is used for escaping of dangerous data then there is a possibility for a bypass. Try to use sanitization library instead or use a Regex with a global flag."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/exts/dataTables.tableTools.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1841,
+                  "startColumn": 23,
+                  "endLine": 1841,
+                  "endColumn": 79
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `oConfig` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/exts/dataTables.tableTools.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2040,
+                  "startColumn": 15,
+                  "endLine": 2040,
+                  "endColumn": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1183,
+                  "startColumn": 9,
+                  "endLine": 1183,
+                  "endColumn": 28
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1217,
+                  "startColumn": 7,
+                  "endLine": 1217,
+                  "endColumn": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1317,
+                  "startColumn": 6,
+                  "endLine": 1317,
+                  "endColumn": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.audit.detect-replaceall-sanitization.detect-replaceall-sanitization",
+          "level": "note",
+          "message": {
+            "text": "Detected a call to `replace()` in an attempt to HTML escape the string `previousSearch.sSearch`. Manually sanitizing input through a manually built list can be circumvented in many situations, and it's better to use a well known sanitization library such as `sanitize-html` or `DOMPurify`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2662,
+                  "startColumn": 10,
+                  "endLine": 2662,
+                  "endColumn": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization",
+          "level": "warning",
+          "message": {
+            "text": "`previousSearch.sSearch.replace` method will only replace the first occurrence when used with a string argument ('\"'). If this method is used for escaping of dangerous data then there is a possibility for a bypass. Try to use sanitization library instead or use a Regex with a global flag."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2662,
+                  "startColumn": 10,
+                  "endLine": 2662,
+                  "endColumn": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `search` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/datatable/jquery.dataTables.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2887,
+                  "startColumn": 10,
+                  "endLine": 2887,
+                  "endColumn": 58
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring",
+          "level": "note",
+          "message": {
+            "text": "Detected string concatenation with a non-literal variable in a util.format / console.log function. If an attacker injects a format specifier in the string, it will forge the log message. Try to use constant values for the format string."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/jquery-gritter/jquery.gritter.custom.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 19,
+                  "endLine": 45,
+                  "endColumn": 22
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `c` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/jquery-maskedinput/jquery.masked-input.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 97,
+                  "startColumn": 16,
+                  "endLine": 97,
+                  "endColumn": 35
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `a` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/mapael/raphael/raphael-min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1391,
+                  "endLine": 9,
+                  "endColumn": 1436
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `depth` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 436,
+                  "startColumn": 16,
+                  "endLine": 441,
+                  "endColumn": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `depth` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 478,
+                  "startColumn": 18,
+                  "endLine": 478,
+                  "endColumn": 78
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `depth` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 479,
+                  "startColumn": 23,
+                  "endLine": 479,
+                  "endColumn": 76
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `patterns_or_re` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 778,
+                  "startColumn": 16,
+                  "endLine": 778,
+                  "endColumn": 95
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `elProperties` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/to-markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 89,
+                  "startColumn": 17,
+                  "endLine": 89,
+                  "endColumn": 42
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `attr` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/markdown/to-markdown.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 103,
+                  "startColumn": 12,
+                  "endLine": 103,
+                  "endColumn": 68
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `token` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/moment/moment.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 684,
+                  "startColumn": 20,
+                  "endLine": 684,
+                  "endColumn": 55
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `namespace` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 17,
+                  "endLine": 17,
+                  "endColumn": 49
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `checkAttr` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 51,
+                  "endLine": 23,
+                  "endColumn": 83
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop",
+          "level": "warning",
+          "message": {
+            "text": "Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 9,
+                  "endLine": 39,
+                  "endColumn": 30
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `flag` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 756,
+                  "startColumn": 15,
+                  "endLine": 756,
+                  "endColumn": 51
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `regexp` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 756,
+                  "startColumn": 15,
+                  "endLine": 756,
+                  "endColumn": 51
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `regexp` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/parsley-validation/parsley.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1037,
+                  "startColumn": 35,
+                  "endLine": 1037,
+                  "endColumn": 71
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `namespace` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/typeahead/typeahead.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 201,
+                  "startColumn": 31,
+                  "endLine": 201,
+                  "endColumn": 60
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp",
+          "level": "warning",
+          "message": {
+            "text": "RegExp() called with a `$` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/adityabyreddy/Desktop/workspace/insecure-bank-master/src/main/webapp/resources/js/plugins/typeahead/typeahead.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 950,
+                  "startColumn": 39,
+                  "endLine": 950,
+                  "endColumn": 88
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "endTimeUtc": "2026-05-14T20:06:11.448777+00:00"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Trivy",
+          "informationUri": "https://trivy.dev",
+          "version": "latest",
+          "rules": [
+            {
+              "id": "CVE-2018-10237",
+              "name": "CVE-2018-10237",
+              "shortDescription": {
+                "text": "guava: Unbounded memory allocation in AtomicDoubleArray and CompoundOrdering classes allow remote attackers to cause a denial of service"
+              },
+              "fullDescription": {
+                "text": "Unbounded memory allocation in Google Guava 11.0 through 24.x before 24.1.1 allows remote attackers to conduct denial of service attacks against servers that depend on this library and deserialize attacker-provided data, because the AtomicDoubleArray class (when serialized with Java serialization) and the CompoundOrdering class (when serialized with GWT serialization) perform eager allocation without appropriate checks on what a client has sent and whether the data size is reasonable."
+              },
+              "helpUri": "http://www.securitytracker.com/id/1041707",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-2976",
+              "name": "CVE-2023-2976",
+              "shortDescription": {
+                "text": "guava: insecure temporary directory creation"
+              },
+              "fullDescription": {
+                "text": "Use of Java's default temporary directory for file creation in `FileBackedOutputStream` in Google Guava versions 1.0 to 31.1 on Unix systems and Android Ice Cream Sandwich allows other users and apps on the machine with access to the default Java temporary directory to be able to access the files created by the class.\n\nEven though the security vulnerability is fixed in version 32.0.0, we recommend using version 32.0.1 as version 32.0.0 breaks some functionality under Windows."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2023-2976",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2020-8908",
+              "name": "CVE-2020-8908",
+              "shortDescription": {
+                "text": "guava: local information disclosure via temporary directory created with unsafe permissions"
+              },
+              "fullDescription": {
+                "text": "A temp directory creation vulnerability exists in all versions of Guava, allowing an attacker with access to the machine to potentially access data in a temporary directory created by the Guava API com.google.common.io.Files.createTempDir(). By default, on unix-like systems, the created directory is world-readable (readable by an attacker with access to the system). The method in question has been marked @Deprecated in versions 30.0 and later and should not be used. For Android developers, we recommend choosing a temporary directory API provided by Android, such as context.getCacheDir(). For other Java developers, we recommend migrating to the Java 7 API java.nio.file.Files.createTempDirectory() which explicitly configures permissions of 700, or configuring the Java runtime's java.io.tmpdir system property to point to a location whose permissions are appropriately configured."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2020-8908",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-24998",
+              "name": "CVE-2023-24998",
+              "shortDescription": {
+                "text": "FileUpload: FileUpload DoS with excessive parts"
+              },
+              "fullDescription": {
+                "text": "Apache Commons FileUpload before 1.5 does not limit the number of request parts to be processed resulting in the possibility of an attacker triggering a DoS with a malicious upload or series of uploads.\n\n\n\n\nNote that, like all of the file upload limits, the\n          new configuration option (FileUploadBase#setFileCountMax) is not\n          enabled by default and must be explicitly configured."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2023/05/22/1",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-48976",
+              "name": "CVE-2025-48976",
+              "shortDescription": {
+                "text": "apache-commons-fileupload: Apache Commons FileUpload DoS via part headers"
+              },
+              "fullDescription": {
+                "text": "Allocation of resources for multipart headers with insufficient limits enabled a DoS vulnerability in Apache Commons FileUpload.\n\nThis issue affects Apache Commons FileUpload: from 1.0 before 1.6; from 2.0.0-M1 before 2.0.0-M4.\n\nUsers are recommended to upgrade to versions 1.6 or 2.0.0-M4, which fix the issue."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2025/06/16/4",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-47554",
+              "name": "CVE-2024-47554",
+              "shortDescription": {
+                "text": "apache-commons-io: Possible denial of service attack on untrusted input to XmlStreamReader"
+              },
+              "fullDescription": {
+                "text": "Uncontrolled Resource Consumption vulnerability in Apache Commons IO.\n\nThe org.apache.commons.io.input.XmlStreamReader class may excessively consume CPU resources when processing maliciously crafted input.\n\n\nThis issue affects Apache Commons IO: from 2.0 before 2.14.0.\n\nUsers are recommended to upgrade to version 2.14.0 or later, which fixes the issue."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2024/10/03/2",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-29425",
+              "name": "CVE-2021-29425",
+              "shortDescription": {
+                "text": "apache-commons-io: Limited path traversal in Apache Commons IO 2.2 to 2.6"
+              },
+              "fullDescription": {
+                "text": "In Apache Commons IO before 2.7, When invoking the method FileNameUtils.normalize with an improper input string, like \"//../foo\", or \"\\\\..\\foo\", the result would be the same value, thus possibly providing access to files in the parent directory, but not further above (thus \"limited\" path traversal), if the calling code would use the result to construct a path value."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2021-29425",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-44228",
+              "name": "CVE-2021-44228",
+              "shortDescription": {
+                "text": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value"
+              },
+              "fullDescription": {
+                "text": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects."
+              },
+              "helpUri": "http://packetstormsecurity.com/files/165225/Apache-Log4j2-2.14.1-Remote-Code-Execution.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-45046",
+              "name": "CVE-2021-45046",
+              "shortDescription": {
+                "text": "log4j-core: DoS in log4j 2.x with thread context message pattern and context lookup pattern (incomplete fix for CVE-2021-44228)"
+              },
+              "fullDescription": {
+                "text": "It was found that the fix to address CVE-2021-44228 in Apache Log4j 2.15.0 was incomplete in certain non-default configurations. This could allows attackers with control over Thread Context Map (MDC) input data when the logging configuration uses a non-default Pattern Layout with either a Context Lookup (for example, $${ctx:loginId}) or a Thread Context Map pattern (%X, %mdc, or %MDC) to craft malicious input data using a JNDI Lookup pattern resulting in an information leak and remote code execution in some environments and local code execution in all environments. Log4j 2.16.0 (Java 8) and 2.12.2 (Java 7) fix this issue by removing support for message lookup patterns and disabling JNDI functionality by default."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2021/12/14/4",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-45105",
+              "name": "CVE-2021-45105",
+              "shortDescription": {
+                "text": "log4j-core: DoS in log4j 2.x with Thread Context Map (MDC) input data contains a recursive lookup and context lookup pattern"
+              },
+              "fullDescription": {
+                "text": "Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups. This allows an attacker with control over Thread Context Map data to cause a denial of service when a crafted string is interpreted. This issue was fixed in Log4j 2.17.0, 2.12.3, and 2.3.1."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2021/12/19/1",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-44832",
+              "name": "CVE-2021-44832",
+              "shortDescription": {
+                "text": "log4j-core: remote code execution via JDBC Appender"
+              },
+              "fullDescription": {
+                "text": "Apache Log4j2 versions 2.0-beta7 through 2.17.0 (excluding security fix releases 2.3.2 and 2.12.4) are vulnerable to a remote code execution (RCE) attack when a configuration uses a JDBC Appender with a JNDI LDAP data source URI when an attacker has control of the target LDAP server. This issue is fixed by limiting JNDI data source names to the java protocol in Log4j2 versions 2.17.1, 2.12.4, and 2.3.2."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2021/12/28/1",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-68161",
+              "name": "CVE-2025-68161",
+              "shortDescription": {
+                "text": "Apache Log4j: Apache Log4j Core: Information disclosure via missing TLS hostname verification"
+              },
+              "fullDescription": {
+                "text": "The Socket Appender in Apache Log4j Core versions 2.0-beta9 through 2.25.2 does not perform TLS hostname verification of the peer certificate, even when the  verifyHostName https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName  configuration attribute or the  log4j2.sslVerifyHostName https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName  system property is set to true.\n\nThis issue may allow a man-in-the-middle attacker to intercept or redirect log traffic under the following conditions:\n\n  *  The attacker is able to intercept or redirect network traffic between the client and the log receiver.\n  *  The attacker can present a server certificate issued by a certification authority trusted by the Socket Appender\u2019s configured trust store (or by the default Java trust store if no custom trust store is configured).\n\n\nUsers are advised to upgrade to Apache Log4j Core version 2.25.3, which addresses this iss"
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2025/12/18/1",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-34477",
+              "name": "CVE-2026-34477",
+              "shortDescription": {
+                "text": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Man-in-the-middle attack due to incomplete hostname verification"
+              },
+              "fullDescription": {
+                "text": "The fix for  CVE-2025-68161 https://logging.apache.org/security.html#CVE-2025-68161  was incomplete: it addressed hostname verification only when enabled via the  log4j2.sslVerifyHostName https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName  system property, but not when configured through the  verifyHostName https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName  attribute of the <Ssl> element.\n\nAlthough the verifyHostName configuration attribute was introduced in Log4j Core 2.12.0, it was silently ignored in all versions through 2.25.3, leaving TLS connections vulnerable to interception regardless of the configured value.\n\nA network-based attacker may be able to perform a man-in-the-middle attack when all of the following conditions are met:\n\n  *  An SMTP, Socket, or Syslog appender is in use.\n  *  TLS is configured via a nested <Ssl> element.\n  *  The attacker can present a certificate issued by a"
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2026-34477",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-34480",
+              "name": "CVE-2026-34480",
+              "shortDescription": {
+                "text": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Invalid XML output causes denial of service in logging"
+              },
+              "fullDescription": {
+                "text": "Apache Log4j Core's  XmlLayout https://logging.apache.org/log4j/2.x/manual/layouts.html#XmlLayout , in versions up to and including 2.25.3, fails to sanitize characters forbidden by the  XML 1.0 specification https://www.w3.org/TR/xml/#charsets  producing invalid XML output whenever a log message or MDC value contains such characters.\n\nThe impact depends on the StAX implementation in use:\n\n  *  JRE built-in StAX: Forbidden characters are silently written to the output, producing malformed XML. Conforming parsers must reject such documents with a fatal error, which may cause downstream log-processing systems to drop the affected records.\n  *  Alternative StAX implementations (e.g.,  Woodstox https://github.com/FasterXML/woodstox , a transitive dependency of the Jackson XML Dataformat module): An exception is thrown during the logging call, and the log event is never delivered to its intended appender, only to Log4j's internal status logger.\n\n\nUsers are advised to upgrade to Apache Log4j"
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2026/04/10/9",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2020-10693",
+              "name": "CVE-2020-10693",
+              "shortDescription": {
+                "text": "hibernate-validator: Improper input validation in the interpolation of constraint error messages"
+              },
+              "fullDescription": {
+                "text": "A flaw was found in Hibernate Validator version 6.1.2.Final. A bug in the message interpolation processor enables invalid EL expressions to be evaluated as if they were valid. This flaw allows attackers to bypass input sanitation (escaping, stripping) controls that developers may have put in place when handling user-controlled data in error messages."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2020-10693",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-1932",
+              "name": "CVE-2023-1932",
+              "shortDescription": {
+                "text": "hibernate-validator: rendering of invalid html with SafeHTML leads to HTML injection and XSS"
+              },
+              "fullDescription": {
+                "text": "A flaw was found in hibernate-validator's 'isValid' method in the org.hibernate.validator.internal.constraintvalidators.hv.SafeHtmlValidator class, which can be bypassed by omitting the tag ending in a less-than character. Browsers may render an invalid html, allowing HTML injection or Cross-Site-Scripting (XSS) attacks."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2023-1932",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-35036",
+              "name": "CVE-2025-35036",
+              "shortDescription": {
+                "text": "hibernate-validator: Hibernate Validator Expression Language Injection"
+              },
+              "fullDescription": {
+                "text": "Hibernate Validator before 6.2.0 and 7.0.0, by default and depending how it is used, may interpolate user-supplied input in a constraint violation message with Expression Language. This could allow an attacker to access sensitive information or execute arbitrary Java code. Hibernate Validator as of 6.2.0 and 7.0.0 no longer interpolates custom constraint violation messages with Expression Language and strongly recommends not allowing user-supplied input in constraint violation messages. CVE-2020-5245 and CVE-2025-4428 are examples of related, downstream vulnerabilities involving Expression Language intepolation of user-supplied data."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2025-35036",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-41853",
+              "name": "CVE-2022-41853",
+              "shortDescription": {
+                "text": "hsqldb: Untrusted input may lead to RCE attack"
+              },
+              "fullDescription": {
+                "text": "Those using java.sql.Statement or java.sql.PreparedStatement in hsqldb (HyperSQL DataBase) to process untrusted input may be vulnerable to a remote code execution attack. By default it is allowed to call any static method of any Java class in the classpath resulting in code execution. The issue can be prevented by updating to 2.7.1 or by setting the system property \"hsqldb.method_class_names\" to classes which are allowed to be called. For example, System.setProperty(\"hsqldb.method_class_names\", \"abc\") or Java argument -Dhsqldb.method_class_names=\"abc\" can be used. From version 2.7.1 all classes by default are not accessible except those in java.lang.Math and need to be manually enabled."
+              },
+              "helpUri": "http://hsqldb.org/doc/2.0/guide/sqlroutines-chapt.html#src_jrt_access_control",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-1597",
+              "name": "CVE-2024-1597",
+              "shortDescription": {
+                "text": "pgjdbc: PostgreSQL JDBC Driver allows attacker to inject SQL if using PreferQueryMode=SIMPLE"
+              },
+              "fullDescription": {
+                "text": "pgjdbc, the PostgreSQL JDBC Driver, allows attacker to inject SQL if using PreferQueryMode=SIMPLE. Note this is not the default. In the default mode there is no vulnerability. A placeholder for a numeric value must be immediately preceded by a minus. There must be a second placeholder for a string value after the first placeholder; both must be on the same line. By constructing a matching string payload, the attacker can inject SQL to alter the query,bypassing the protections that parameterized queries bring against SQL Injection attacks. Versions before 42.7.2, 42.6.1, 42.5.5, 42.4.4, 42.3.9, and 42.2.28 are affected."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2024/04/02/6",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-31197",
+              "name": "CVE-2022-31197",
+              "shortDescription": {
+                "text": "postgresql: SQL Injection in ResultSet.refreshRow() with malicious column names"
+              },
+              "fullDescription": {
+                "text": "PostgreSQL JDBC Driver (PgJDBC for short) allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. The PGJDBC implementation of the `java.sql.ResultRow.refreshRow()` method is not performing escaping of column names so a malicious column name that contains a statement terminator, e.g. `;`, could lead to SQL injection. This could lead to executing additional SQL commands as the application's JDBC user. User applications that do not invoke the `ResultSet.refreshRow()` method are not impacted. User application that do invoke that method are impacted if the underlying database that they are querying via their JDBC application may be under the control of an attacker. The attack requires the attacker to trick the user into executing SQL against a table name who's column names would contain the malicious SQL and subsequently invoke the `refreshRow()` method on the ResultSet. Note that the application's JDBC user and the schema owner need not be "
+              },
+              "helpUri": "https://access.redhat.com/errata/RHSA-2023:0318",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-22978",
+              "name": "CVE-2022-22978",
+              "shortDescription": {
+                "text": "springframework: Authorization Bypass in RegexRequestMatcher"
+              },
+              "fullDescription": {
+                "text": "In spring security versions prior to 5.4.11+, 5.5.7+ , 5.6.4+ and older unsupported versions, RegexRequestMatcher can easily be misconfigured to be bypassed on some servlet containers. Applications using RegexRequestMatcher with `.` in the regular expression are possibly vulnerable to an authorization bypass."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2022-22978",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-5007",
+              "name": "CVE-2016-5007",
+              "shortDescription": {
+                "text": "spring: Path matching inconsistency"
+              },
+              "fullDescription": {
+                "text": "Both Spring Security 3.2.x, 4.0.x, 4.1.0 and the Spring Framework 3.2.x, 4.0.x, 4.1.x, 4.2.x rely on URL pattern mappings for authorization and for mapping requests to controllers respectively. Differences in the strictness of the pattern matching mechanisms, for example with regards to space trimming in path segments, can lead Spring Security to not recognize certain paths as not protected that are in fact mapped to Spring MVC controllers that should be protected. The problem is compounded by the fact that the Spring Framework provides richer features with regards to pattern matching as well as by the fact that pattern matching in each Spring Security and the Spring Framework can easily be customized creating additional differences."
+              },
+              "helpUri": "http://www.oracle.com/technetwork/security-advisory/cpuapr2018-3678067.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-9879",
+              "name": "CVE-2016-9879",
+              "shortDescription": {
+                "text": "Security: Improper handling of path parameters allows bypassing the security constraint"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in Pivotal Spring Security before 3.2.10, 4.1.x before 4.1.4, and 4.2.x before 4.2.1. Spring Security does not consider URL path parameters when processing security constraints. By adding a URL path parameter with an encoded \"/\" to a request, an attacker may be able to bypass a security constraint. The root cause of this issue is a lack of clarity regarding the handling of path parameters in the Servlet Specification. Some Servlet containers include path parameters in the value returned for getPathInfo() and some do not. Spring Security uses the value returned by getPathInfo() as part of the process of mapping requests to security constraints. The unexpected presence of path parameters can cause a constraint to be bypassed. Users of Apache Tomcat (all current versions) are not affected by this vulnerability since Tomcat follows the guidance previously provided by the Servlet Expert group and strips path parameters from the value returned by getContextPath(), get"
+              },
+              "helpUri": "http://www.securityfocus.com/bid/95142",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2019-11272",
+              "name": "CVE-2019-11272",
+              "shortDescription": {
+                "text": "spring-security-core: mishandling of user passwords allows logging in with a password of NULL"
+              },
+              "fullDescription": {
+                "text": "Spring Security, versions 4.2.x up to 4.2.12, and older unsupported versions support plain text passwords using PlaintextPasswordEncoder. If an application using an affected version of Spring Security is leveraging PlaintextPasswordEncoder and a user has a null encoded password, a malicious user (or attacker) can authenticate using a password of \"null\"."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2019-11272",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-22257",
+              "name": "CVE-2024-22257",
+              "shortDescription": {
+                "text": "spring-security: Broken Access Control With Direct Use of AuthenticatedVoter"
+              },
+              "fullDescription": {
+                "text": "In Spring Security, versions 5.7.x prior to 5.7.12, 5.8.x prior to \n5.8.11, versions 6.0.x prior to 6.0.9, versions 6.1.x prior to 6.1.8, \nversions 6.2.x prior to 6.2.3, an application is possible vulnerable to \nbroken access control when it directly uses the AuthenticatedVoter#vote passing a null Authentication parameter."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-22257",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2020-5408",
+              "name": "CVE-2020-5408",
+              "shortDescription": {
+                "text": "Insufficient Entropy in Spring Security"
+              },
+              "fullDescription": {
+                "text": "Spring Security versions 5.3.x prior to 5.3.2, 5.2.x prior to 5.2.4, 5.1.x prior to 5.1.10, 5.0.x prior to 5.0.16 and 4.2.x prior to 4.2.16 use a fixed null initialization vector with CBC Mode in the implementation of the queryable text encryptor. A malicious user with access to the data that has been encrypted using such an encryptor may be able to derive the unencrypted values using a dictionary attack."
+              },
+              "helpUri": "https://nvd.nist.gov/vuln/detail/CVE-2020-5408",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38827",
+              "name": "CVE-2024-38827",
+              "shortDescription": {
+                "text": "spring-security: authorization bypass for case sensitive comparisons"
+              },
+              "fullDescription": {
+                "text": "The usage of String.toLowerCase()\u00a0and String.toUpperCase()\u00a0has some Locale\u00a0dependent exceptions that could potentially result in authorization rules not working properly."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-38827",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38821",
+              "name": "CVE-2024-38821",
+              "shortDescription": {
+                "text": "Spring-WebFlux: Authorization Bypass of Static Resources in WebFlux Applications"
+              },
+              "fullDescription": {
+                "text": "Spring WebFlux applications that have Spring Security authorization rules on static resources can be bypassed under certain circumstances.\n\nFor this to impact an application, all of the following must be true:\n\n  *  It must be a WebFlux application\n  *  It must be using Spring's static resources support\n  *  It must have a non-permitAll authorization rule applied to the static resources support"
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-38821",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-22732",
+              "name": "CVE-2026-22732",
+              "shortDescription": {
+                "text": "Spring Security: Spring Security: Security policy bypass and information disclosure due to unwritten HTTP headers"
+              },
+              "fullDescription": {
+                "text": "When applications specify HTTP response headers for servlet applications using Spring Security, there is the possibility that the HTTP Headers will not be written.\u00a0\nThis issue affects Spring Security\u00a0Servlet applications using lazy (default) writing of HTTP Headers:\n\n: from 5.7.0 through 5.7.21, from 5.8.0 through 5.8.23, from 6.3.0 through 6.3.14, from 6.4.0 through 6.4.14, from 6.5.0 through 6.5.8, from 7.0.0 through 7.0.3."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2026-22732",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-22112",
+              "name": "CVE-2021-22112",
+              "shortDescription": {
+                "text": "jenkins: Privilege escalation vulnerability in bundled Spring Security library"
+              },
+              "fullDescription": {
+                "text": "Spring Security 5.4.x prior to 5.4.4, 5.3.x prior to 5.3.8.RELEASE, 5.2.x prior to 5.2.9.RELEASE, and older unsupported versions can fail to save the SecurityContext if it is changed more than once in a single request.A malicious user cannot cause the bug to happen (it must be programmed in). However, if the application's intent is to only allow the user to run with elevated privileges in a small portion of the application, the bug can be leveraged to extend those privileges to the rest of the application."
+              },
+              "helpUri": "http://www.openwall.com/lists/oss-security/2021/02/19/7",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-22965",
+              "name": "CVE-2022-22965",
+              "shortDescription": {
+                "text": "spring-framework: RCE via Data Binding on JDK 9+"
+              },
+              "fullDescription": {
+                "text": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution (RCE) via data binding. The specific exploit requires the application to run on Tomcat as a WAR deployment. If the application is deployed as a Spring Boot executable jar, i.e. the default, it is not vulnerable to the exploit. However, the nature of the vulnerability is more general, and there may be other ways to exploit it."
+              },
+              "helpUri": "http://packetstormsecurity.com/files/166713/Spring4Shell-Code-Execution.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-22970",
+              "name": "CVE-2022-22970",
+              "shortDescription": {
+                "text": "springframework: DoS via data binding to multipartFile or servlet part"
+              },
+              "fullDescription": {
+                "text": "In spring framework versions prior to 5.3.20+ , 5.2.22+ and old unsupported versions, applications that handle file uploads are vulnerable to DoS attack if they rely on data binding to set a MultipartFile or javax.servlet.Part to a field in a model object."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2022-22970",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-22968",
+              "name": "CVE-2022-22968",
+              "shortDescription": {
+                "text": "Framework: Data Binding Rules Vulnerability"
+              },
+              "fullDescription": {
+                "text": "In Spring Framework versions 5.3.0 - 5.3.18, 5.2.0 - 5.2.20, and older unsupported versions, the patterns for disallowedFields on a DataBinder are case sensitive which means a field is not effectively protected unless it is listed with both upper and lower case for the first character of the field, including upper and lower case for the first character of all nested fields within the property path."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2022-22968",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38820",
+              "name": "CVE-2024-38820",
+              "shortDescription": {
+                "text": "The fix for CVE-2022-22968 made disallowedFieldspatterns in DataBinder ..."
+              },
+              "fullDescription": {
+                "text": "The fix for CVE-2022-22968 made disallowedFields\u00a0patterns in DataBinder\u00a0case insensitive. However, String.toLowerCase()\u00a0has some Locale dependent exceptions that could potentially result in fields not protected as expected."
+              },
+              "helpUri": "https://github.com/spring-projects/spring-framework",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2025-22233",
+              "name": "CVE-2025-22233",
+              "shortDescription": {
+                "text": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for bo ..."
+              },
+              "fullDescription": {
+                "text": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for both the configured disallowedFields patterns and for request parameter names. However, there are still cases where it is possible to bypass the disallowedFields checks.\n\nAffected Spring Products and Versions\n\nSpring Framework:\n  *  6.2.0 - 6.2.6\n\n  *  6.1.0 - 6.1.19\n\n  *  6.0.0 - 6.0.27\n\n  *  5.3.0 - 5.3.42\n  *  Older, unsupported versions are also affected\n\n\n\nMitigation\n\nUsers of affected versions should upgrade to the corresponding fixed version.\n\nAffected version(s)Fix Version\u00a0Availability\u00a06.2.x\n 6.2.7\nOSS6.1.x\n 6.1.20\nOSS6.0.x\n 6.0.28\n Commercial https://enterprise.spring.io/ 5.3.x\n 5.3.43\n Commercial https://enterprise.spring.io/ \nNo further mitigation steps are necessary.\n\n\nGenerally, we recommend using a dedicated model object with properties only for data binding, or using constructor binding since constructor arguments explicitly declare what to bind together with turning off setter binding through the declar"
+              },
+              "helpUri": "https://github.com/spring-projects/spring-framework",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-1272",
+              "name": "CVE-2018-1272",
+              "shortDescription": {
+                "text": "spring-framework: Multipart content pollution"
+              },
+              "fullDescription": {
+                "text": "Spring Framework, versions 5.0 prior to 5.0.5 and versions 4.3 prior to 4.3.15 and older unsupported versions, provide client-side support for multipart requests. When Spring MVC or Spring WebFlux server application (server A) receives input from a remote client, and then uses that input to make a multipart request to another server (server B), it can be exposed to an attack, where an extra multipart is inserted in the content of the request from server A, causing server B to use the wrong value for a part it expects. This could to lead privilege escalation, for example, if the part content represents a username or user roles."
+              },
+              "helpUri": "http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-15756",
+              "name": "CVE-2018-15756",
+              "shortDescription": {
+                "text": "springframework: DoS Attack via Range Requests"
+              },
+              "fullDescription": {
+                "text": "Spring Framework, version 5.1, versions 5.0.x prior to 5.0.10, versions 4.3.x prior to 4.3.20, and older unsupported versions on the 4.2.x branch provide support for range requests when serving static resources through the ResourceHttpRequestHandler, or starting in 5.0 when an annotated controller returns an org.springframework.core.io.Resource. A malicious user (or attacker) can add a range header with a high number of ranges, or with wide ranges that overlap, or both, for a denial of service attack. This vulnerability affects applications that depend on either spring-webmvc or spring-webflux. Such applications must also have a registration for serving static resources (e.g. JS, CSS, images, and others), or have an annotated controller that returns an org.springframework.core.io.Resource. Spring Boot applications that depend on spring-boot-starter-web or spring-boot-starter-webflux are ready to serve static resources out of the box and are therefore vulnerable."
+              },
+              "helpUri": "http://www.securityfocus.com/bid/105703",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-1257",
+              "name": "CVE-2018-1257",
+              "shortDescription": {
+                "text": "spring-framework: ReDoS Attack with spring-messaging"
+              },
+              "fullDescription": {
+                "text": "Spring Framework, versions 5.0.x prior to 5.0.6, versions 4.3.x prior to 4.3.17, and older unsupported versions allows applications to expose STOMP over WebSocket endpoints with a simple, in-memory STOMP broker through the spring-messaging module. A malicious user (or attacker) can craft a message to the broker that can lead to a regular expression, denial of service attack."
+              },
+              "helpUri": "http://www.oracle.com/technetwork/security-advisory/cpuoct2018-4428296.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2018-1271",
+              "name": "CVE-2018-1271",
+              "shortDescription": {
+                "text": "spring-framework: Directory traversal vulnerability with static resources on Windows filesystems"
+              },
+              "fullDescription": {
+                "text": "Spring Framework, versions 5.0 prior to 5.0.5 and versions 4.3 prior to 4.3.15 and older unsupported versions, allow applications to configure Spring MVC to serve static resources (e.g. CSS, JS, images). When static resources are served from a file system on Windows (as opposed to the classpath, or the ServletContext), a malicious user can send a request using a specially crafted URL that can lead a directory traversal attack."
+              },
+              "helpUri": "http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-20863",
+              "name": "CVE-2023-20863",
+              "shortDescription": {
+                "text": "springframework: Spring Expression DoS Vulnerability"
+              },
+              "fullDescription": {
+                "text": "In spring framework versions prior to 5.2.24 release+ ,5.3.27+ and 6.0.8+ , it is possible for a user to provide a specially crafted SpEL expression that may cause a denial-of-service (DoS) condition."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2023-20863",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-22950",
+              "name": "CVE-2022-22950",
+              "shortDescription": {
+                "text": "spring-expression: Denial of service via specially crafted SpEL expression"
+              },
+              "fullDescription": {
+                "text": "n Spring Framework versions 5.3.0 - 5.3.16 and older unsupported versions, it is possible for a user to provide a specially crafted SpEL expression that may cause a denial of service condition."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2022-22950",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-20861",
+              "name": "CVE-2023-20861",
+              "shortDescription": {
+                "text": "springframework: Spring Expression DoS Vulnerability"
+              },
+              "fullDescription": {
+                "text": "In Spring Framework versions 6.0.0 - 6.0.6, 5.3.0 - 5.3.25, 5.2.0.RELEASE - 5.2.22.RELEASE, and older unsupported versions, it is possible for a user to provide a specially crafted SpEL expression that may cause a denial-of-service (DoS) condition."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2023-20861",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38808",
+              "name": "CVE-2024-38808",
+              "shortDescription": {
+                "text": "spring-expression: Denial of service when processing a specially crafted Spring Expression Language expression"
+              },
+              "fullDescription": {
+                "text": "In Spring Framework versions 5.3.0 - 5.3.38 and older unsupported versions, it is possible for a user to provide a specially crafted Spring Expression Language (SpEL) expression that may cause a denial of service (DoS) condition.\n\nSpecifically, an application is vulnerable when the following is true:\n\n  *  The application evaluates user-supplied SpEL expressions."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-38808",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-1000027",
+              "name": "CVE-2016-1000027",
+              "shortDescription": {
+                "text": "spring: HttpInvokerServiceExporter readRemoteInvocation method untrusted java deserialization"
+              },
+              "fullDescription": {
+                "text": "Pivotal Spring Framework through 5.3.16 suffers from a potential remote code execution (RCE) issue if used for Java deserialization of untrusted data. Depending on how the library is implemented within a product, this issue may or not occur, and authentication may be required. NOTE: the vendor's position is that untrusted data is not an intended use case. The product's behavior will not be changed because some users rely on deserialization of trusted data."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2016-1000027",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-22243",
+              "name": "CVE-2024-22243",
+              "shortDescription": {
+                "text": "springframework: URL Parsing with Host Validation"
+              },
+              "fullDescription": {
+                "text": "Applications that use UriComponentsBuilder\u00a0to parse an externally provided URL (e.g. through a query parameter) AND\u00a0perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html \u00a0attack or to a SSRF attack if the URL is used after passing validation checks."
+              },
+              "helpUri": "http://seclists.org/fulldisclosure/2024/Sep/24",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-22259",
+              "name": "CVE-2024-22259",
+              "shortDescription": {
+                "text": "springframework: URL Parsing with Host Validation"
+              },
+              "fullDescription": {
+                "text": "Applications that use UriComponentsBuilder in Spring Framework\u00a0to parse an externally provided URL (e.g. through a query parameter) AND\u00a0perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html \u00a0attack or to a SSRF attack if the URL is used after passing validation checks.\n\nThis is the same as  CVE-2024-22243 https://spring.io/security/cve-2024-22243 , but with different input."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-22259",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-22262",
+              "name": "CVE-2024-22262",
+              "shortDescription": {
+                "text": "springframework: URL Parsing with Host Validation"
+              },
+              "fullDescription": {
+                "text": "Applications that use UriComponentsBuilder\u00a0to parse an externally provided URL (e.g. through a query parameter) AND\u00a0perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html \u00a0attack or to a SSRF attack if the URL is used after passing validation checks.\n\nThis is the same as  CVE-2024-22259 https://spring.io/security/cve-2024-22259 \u00a0and  CVE-2024-22243 https://spring.io/security/cve-2024-22243 , but with different input."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-22262",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38809",
+              "name": "CVE-2024-38809",
+              "shortDescription": {
+                "text": "org.springframework:spring-web: Spring Framework DoS via conditional HTTP request"
+              },
+              "fullDescription": {
+                "text": "Applications that parse ETags from \"If-Match\" or \"If-None-Match\" request headers are vulnerable to DoS attack.\n\nUsers of affected versions should upgrade to the corresponding fixed version.\n\nUsers of older, unsupported versions could enforce a size limit on \"If-Match\" and \"If-None-Match\" headers, e.g. through a Filter."
+              },
+              "helpUri": "http://github.com/spring-projects/spring-framework",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-9878",
+              "name": "CVE-2016-9878",
+              "shortDescription": {
+                "text": "Framework: Directory Traversal in the Spring Framework ResourceServlet"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in Pivotal Spring Framework before 3.2.18, 4.2.x before 4.2.9, and 4.3.x before 4.3.5. Paths provided to the ResourceServlet were not properly sanitized and as a result exposed to directory traversal attacks."
+              },
+              "helpUri": "http://www.oracle.com/technetwork/security-advisory/cpuapr2018-3678067.html",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2024-38819",
+              "name": "CVE-2024-38819",
+              "shortDescription": {
+                "text": "org.springframework:spring-webmvc: Path traversal vulnerability in functional web frameworks"
+              },
+              "fullDescription": {
+                "text": "Applications serving static resources through the functional web frameworks WebMvc.fn or WebFlux.fn are vulnerable to path traversal attacks. An attacker can craft malicious HTTP requests and obtain any file on the file system that is also accessible to the process in which the Spring application is running."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2024-38819",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-22745",
+              "name": "CVE-2026-22745",
+              "shortDescription": {
+                "text": "spring-webflux: Spring MVC and Spring WebFlux: Denial of Service via slow static resource resolution on Windows"
+              },
+              "fullDescription": {
+                "text": "Spring MVC and WebFlux applications are vulnerable to Denial of Service attacks when resolving static resources.\n\n\nMore precisely, an application can be vulnerable when all the following are true:\n\n  *  the application is using Spring MVC or Spring WebFlux\n  *  the application is serving static resources from the file system\n  *  the application is running on a Windows platform\n\n\nWhen all the conditions above are met, the attacker can send malicious requests that are slow to resolve and that can keep HTTP connections in use. This can cause a Denial of Service on the application."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2026-22745",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-22741",
+              "name": "CVE-2026-22741",
+              "shortDescription": {
+                "text": "Spring MVC: Spring WebFlux: Spring MVC and Spring WebFlux: Denial of Service via cache poisoning"
+              },
+              "fullDescription": {
+                "text": "Spring MVC and WebFlux applications are vulnerable to cache poisoning when resolving static resources.\n\n\nMore precisely, an application can be vulnerable when all the following are true:\n\n  *  the application is using Spring MVC or Spring WebFlux\n  *  the application is configuring the\u00a0 resource chain support https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/static-resources.html#page-title \u00a0with caching enabled\n  *  the application adds support for encoded resources resolution\n  *  the resource cache must be empty when the attacker has access to the application\n\n\nWhen all the conditions above are met, the attacker can send malicious requests and poison the resource cache with resources using the wrong encoding. This can cause a denial of service by breaking the front-end application for clients."
+              },
+              "helpUri": "https://access.redhat.com/security/cve/CVE-2026-22741",
+              "properties": {
+                "tags": [
+                  "SCA",
+                  "trivy"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2018-10237",
+          "level": "warning",
+          "message": {
+            "text": "guava: Unbounded memory allocation in AtomicDoubleArray and CompoundOrdering classes allow remote attackers to cause a denial of service in `com.google.guava:guava`. Fixed in version: 24.1.1-android."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2976",
+          "level": "warning",
+          "message": {
+            "text": "guava: insecure temporary directory creation in `com.google.guava:guava`. Fixed in version: 32.0.0-android."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-8908",
+          "level": "note",
+          "message": {
+            "text": "guava: local information disclosure via temporary directory created with unsafe permissions in `com.google.guava:guava`. Fixed in version: 32.0.0-android."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-24998",
+          "level": "error",
+          "message": {
+            "text": "FileUpload: FileUpload DoS with excessive parts in `commons-fileupload:commons-fileupload`. Fixed in version: 1.5."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-48976",
+          "level": "error",
+          "message": {
+            "text": "apache-commons-fileupload: Apache Commons FileUpload DoS via part headers in `commons-fileupload:commons-fileupload`. Fixed in version: 1.6.0."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-47554",
+          "level": "error",
+          "message": {
+            "text": "apache-commons-io: Possible denial of service attack on untrusted input to XmlStreamReader in `commons-io:commons-io`. Fixed in version: 2.14.0."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-29425",
+          "level": "warning",
+          "message": {
+            "text": "apache-commons-io: Limited path traversal in Apache Commons IO 2.2 to 2.6 in `commons-io:commons-io`. Fixed in version: 2.7."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-44228",
+          "level": "error",
+          "message": {
+            "text": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.15.0, 2.3.1, 2.12.2."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-45046",
+          "level": "error",
+          "message": {
+            "text": "log4j-core: DoS in log4j 2.x with thread context message pattern and context lookup pattern (incomplete fix for CVE-2021-44228) in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.16.0, 2.12.2."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-45105",
+          "level": "error",
+          "message": {
+            "text": "log4j-core: DoS in log4j 2.x with Thread Context Map (MDC) input data contains a recursive lookup and context lookup pattern in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.12.3, 2.17.0, 2.3.1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-44832",
+          "level": "warning",
+          "message": {
+            "text": "log4j-core: remote code execution via JDBC Appender in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.3.2, 2.12.4, 2.17.1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-68161",
+          "level": "warning",
+          "message": {
+            "text": "Apache Log4j: Apache Log4j Core: Information disclosure via missing TLS hostname verification in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.25.3."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-34477",
+          "level": "warning",
+          "message": {
+            "text": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Man-in-the-middle attack due to incomplete hostname verification in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.25.4."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-34480",
+          "level": "warning",
+          "message": {
+            "text": "org.apache.logging.log4j/log4j-core: Apache Log4j Core: Invalid XML output causes denial of service in logging in `org.apache.logging.log4j:log4j-core`. Fixed in version: 2.25.4."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-10693",
+          "level": "warning",
+          "message": {
+            "text": "hibernate-validator: Improper input validation in the interpolation of constraint error messages in `org.hibernate:hibernate-validator`. Fixed in version: 6.1.5.Final, 6.0.20.Final."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-1932",
+          "level": "warning",
+          "message": {
+            "text": "hibernate-validator: rendering of invalid html with SafeHTML leads to HTML injection and XSS in `org.hibernate:hibernate-validator`. Fixed in version: 6.2.0.Final."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-35036",
+          "level": "warning",
+          "message": {
+            "text": "hibernate-validator: Hibernate Validator Expression Language Injection in `org.hibernate:hibernate-validator`. Fixed in version: 6.2.0.CR1, 7.0.0.CR1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-41853",
+          "level": "error",
+          "message": {
+            "text": "hsqldb: Untrusted input may lead to RCE attack in `org.hsqldb:hsqldb`. Fixed in version: 2.7.1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-1597",
+          "level": "error",
+          "message": {
+            "text": "pgjdbc: PostgreSQL JDBC Driver allows attacker to inject SQL if using PreferQueryMode=SIMPLE in `org.postgresql:postgresql`. Fixed in version: 42.2.28, 42.3.9, 42.4.4, 42.5.5, 42.6.1, 42.7.2."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-31197",
+          "level": "error",
+          "message": {
+            "text": "postgresql: SQL Injection in ResultSet.refreshRow() with malicious column names in `org.postgresql:postgresql`. Fixed in version: 42.2.26, 42.4.1, 42.3.7."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22978",
+          "level": "error",
+          "message": {
+            "text": "springframework: Authorization Bypass in RegexRequestMatcher in `org.springframework.security:spring-security-core`. Fixed in version: 5.5.7, 5.6.4, 5.4.11."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-5007",
+          "level": "error",
+          "message": {
+            "text": "spring: Path matching inconsistency in `org.springframework.security:spring-security-core`. Fixed in version: 4.1.1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-9879",
+          "level": "error",
+          "message": {
+            "text": "Security: Improper handling of path parameters allows bypassing the security constraint in `org.springframework.security:spring-security-core`. Fixed in version: 3.2.10.RELEASE, 4.1.4.RELEASE, 4.2.1.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-11272",
+          "level": "error",
+          "message": {
+            "text": "spring-security-core: mishandling of user passwords allows logging in with a password of NULL in `org.springframework.security:spring-security-core`. Fixed in version: 4.2.13."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22257",
+          "level": "error",
+          "message": {
+            "text": "spring-security: Broken Access Control With Direct Use of AuthenticatedVoter in `org.springframework.security:spring-security-core`. Fixed in version: 5.7.12, 5.8.11, 6.1.8, 6.2.3."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-5408",
+          "level": "warning",
+          "message": {
+            "text": "Insufficient Entropy in Spring Security in `org.springframework.security:spring-security-core`. Fixed in version: 5.3.2, 5.2.4, 5.1.10, 5.0.16, 4.2.16."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38827",
+          "level": "warning",
+          "message": {
+            "text": "spring-security: authorization bypass for case sensitive comparisons in `org.springframework.security:spring-security-core`. Fixed in version: 5.7.14, 5.8.16, 6.0.14, 6.1.12, 6.2.8, 6.3.5."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22978",
+          "level": "error",
+          "message": {
+            "text": "springframework: Authorization Bypass in RegexRequestMatcher in `org.springframework.security:spring-security-web`. Fixed in version: 5.5.7, 5.6.4, 5.4.11."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38821",
+          "level": "error",
+          "message": {
+            "text": "Spring-WebFlux: Authorization Bypass of Static Resources in WebFlux Applications in `org.springframework.security:spring-security-web`. Fixed in version: 5.7.13, 5.8.15, 6.2.7, 6.0.13, 6.1.11, 6.3.4."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-22732",
+          "level": "error",
+          "message": {
+            "text": "Spring Security: Spring Security: Security policy bypass and information disclosure due to unwritten HTTP headers in `org.springframework.security:spring-security-web`. Fixed in version: 6.5.9, 7.0.4."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-22112",
+          "level": "error",
+          "message": {
+            "text": "jenkins: Privilege escalation vulnerability in bundled Spring Security library in `org.springframework.security:spring-security-web`. Fixed in version: 5.4.4, 5.3.8, 5.2.9."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22965",
+          "level": "error",
+          "message": {
+            "text": "spring-framework: RCE via Data Binding on JDK 9+ in `org.springframework:spring-beans`. Fixed in version: 5.2.20.RELEASE, 5.3.18."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22970",
+          "level": "error",
+          "message": {
+            "text": "springframework: DoS via data binding to multipartFile or servlet part in `org.springframework:spring-beans`. Fixed in version: 5.2.22.RELEASE, 5.3.20."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22968",
+          "level": "error",
+          "message": {
+            "text": "Framework: Data Binding Rules Vulnerability in `org.springframework:spring-context`. Fixed in version: 5.3.19, 5.2.21.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38820",
+          "level": "warning",
+          "message": {
+            "text": "The fix for CVE-2022-22968 made disallowedFieldspatterns in DataBinder ... in `org.springframework:spring-context`. Fixed in version: 6.1.14."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-22233",
+          "level": "note",
+          "message": {
+            "text": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for bo ... in `org.springframework:spring-context`. Fixed in version: 6.2.7, 6.1.20."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-5007",
+          "level": "error",
+          "message": {
+            "text": "spring: Path matching inconsistency in `org.springframework:spring-core`. Fixed in version: 4.3.1."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1272",
+          "level": "error",
+          "message": {
+            "text": "spring-framework: Multipart content pollution in `org.springframework:spring-core`. Fixed in version: 4.3.15, 5.0.5."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-15756",
+          "level": "error",
+          "message": {
+            "text": "springframework: DoS Attack via Range Requests in `org.springframework:spring-core`. Fixed in version: 5.1.1.RELEASE, 5.0.10.RELEASE, 4.3.20.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1257",
+          "level": "warning",
+          "message": {
+            "text": "spring-framework: ReDoS Attack with spring-messaging in `org.springframework:spring-core`. Fixed in version: 5.0.6, 4.3.17."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1271",
+          "level": "warning",
+          "message": {
+            "text": "spring-framework: Directory traversal vulnerability with static resources on Windows filesystems in `org.springframework:spring-core`. Fixed in version: 5.0.5, 4.3.15."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-20863",
+          "level": "error",
+          "message": {
+            "text": "springframework: Spring Expression DoS Vulnerability in `org.springframework:spring-expression`. Fixed in version: 6.0.8, 5.3.27, 5.2.24.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22950",
+          "level": "warning",
+          "message": {
+            "text": "spring-expression: Denial of service via specially crafted SpEL expression in `org.springframework:spring-expression`. Fixed in version: 5.3.17, 5.2.20.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-20861",
+          "level": "warning",
+          "message": {
+            "text": "springframework: Spring Expression DoS Vulnerability in `org.springframework:spring-expression`. Fixed in version: 6.0.7, 5.3.26, 5.2.23.RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38808",
+          "level": "warning",
+          "message": {
+            "text": "spring-expression: Denial of service when processing a specially crafted Spring Expression Language expression in `org.springframework:spring-expression`. Fixed in version: 5.3.39."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-1000027",
+          "level": "error",
+          "message": {
+            "text": "spring: HttpInvokerServiceExporter readRemoteInvocation method untrusted java deserialization in `org.springframework:spring-web`. Fixed in version: 6.0.0."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22243",
+          "level": "error",
+          "message": {
+            "text": "springframework: URL Parsing with Host Validation in `org.springframework:spring-web`. Fixed in version: 6.1.4, 6.0.17, 5.3.32."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22259",
+          "level": "error",
+          "message": {
+            "text": "springframework: URL Parsing with Host Validation in `org.springframework:spring-web`. Fixed in version: 6.1.5, 6.0.18, 5.3.33."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22262",
+          "level": "error",
+          "message": {
+            "text": "springframework: URL Parsing with Host Validation in `org.springframework:spring-web`. Fixed in version: 5.3.34, 6.0.19, 6.1.6."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38809",
+          "level": "warning",
+          "message": {
+            "text": "org.springframework:spring-web: Spring Framework DoS via conditional HTTP request in `org.springframework:spring-web`. Fixed in version: 5.3.38, 6.0.23, 6.1.12."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38820",
+          "level": "warning",
+          "message": {
+            "text": "The fix for CVE-2022-22968 made disallowedFieldspatterns in DataBinder ... in `org.springframework:spring-web`. Fixed in version: 6.1.14."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-22965",
+          "level": "error",
+          "message": {
+            "text": "spring-framework: RCE via Data Binding on JDK 9+ in `org.springframework:spring-webmvc`. Fixed in version: 5.2.20.RELEASE, 5.3.18."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-9878",
+          "level": "error",
+          "message": {
+            "text": "Framework: Directory Traversal in the Spring Framework ResourceServlet in `org.springframework:spring-webmvc`. Fixed in version: 3.2.18, 4.2.9, 4.3.5."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-38819",
+          "level": "error",
+          "message": {
+            "text": "org.springframework:spring-webmvc: Path traversal vulnerability in functional web frameworks in `org.springframework:spring-webmvc`. Fixed in version: 6.1.14."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-22745",
+          "level": "warning",
+          "message": {
+            "text": "spring-webflux: Spring MVC and Spring WebFlux: Denial of Service via slow static resource resolution on Windows in `org.springframework:spring-webmvc`. Fixed in version: 7.0.7, 6.2.18."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-22741",
+          "level": "note",
+          "message": {
+            "text": "Spring MVC: Spring WebFlux: Spring MVC and Spring WebFlux: Denial of Service via cache poisoning in `org.springframework:spring-webmvc`. Fixed in version: 7.0.7, 6.2.18."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "endTimeUtc": "2026-05-14T20:06:11.448793+00:00"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Trivy",
+          "informationUri": "https://trivy.dev",
+          "version": "latest",
+          "rules": [
+            {
+              "id": "DS-0002",
+              "name": "DS-0002",
+              "shortDescription": {
+                "text": "Image user should not be 'root'"
+              },
+              "fullDescription": {
+                "text": "Running containers with 'root' user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a 'USER' statement to the Dockerfile."
+              },
+              "helpUri": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+              "properties": {
+                "tags": [
+                  "IaC",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "DS-0005",
+              "name": "DS-0005",
+              "shortDescription": {
+                "text": "ADD instead of COPY"
+              },
+              "fullDescription": {
+                "text": "You should use COPY instead of ADD unless you want to extract a tar file. Note that an ADD command will extract a tar file, which adds the risk of Zip-based vulnerabilities. Accordingly, it is advised to use a COPY command, which does not extract tar files."
+              },
+              "helpUri": "https://docs.docker.com/engine/reference/builder/#add",
+              "properties": {
+                "tags": [
+                  "IaC",
+                  "trivy"
+                ]
+              }
+            },
+            {
+              "id": "DS-0026",
+              "name": "DS-0026",
+              "shortDescription": {
+                "text": "No HEALTHCHECK defined"
+              },
+              "fullDescription": {
+                "text": "You should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers."
+              },
+              "helpUri": "https://blog.aquasec.com/docker-security-best-practices",
+              "properties": {
+                "tags": [
+                  "IaC",
+                  "trivy"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DS-0002",
+          "level": "error",
+          "message": {
+            "text": "Image user should not be 'root' in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DS-0005",
+          "level": "note",
+          "message": {
+            "text": "ADD instead of COPY in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DS-0005",
+          "level": "note",
+          "message": {
+            "text": "ADD instead of COPY in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DS-0005",
+          "level": "note",
+          "message": {
+            "text": "ADD instead of COPY in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DS-0005",
+          "level": "note",
+          "message": {
+            "text": "ADD instead of COPY in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DS-0026",
+          "level": "note",
+          "message": {
+            "text": "No HEALTHCHECK defined in `Dockerfile`."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "%SRCROOT%"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "endTimeUtc": "2026-05-14T20:06:11.448794+00:00"
+        }
+      ]
+    }
+  ]
+}
